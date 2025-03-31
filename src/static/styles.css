@@ -75,26 +75,28 @@ section h3 {
 }
 
 .activity-card .participants {
-  margin-top: 15px;
-  padding: 10px;
-  background-color: #e3f2fd;
-  border: 1px solid #90caf9;
-  border-radius: 5px;
+  margin-top: 20px; /* Increase spacing from other elements */
+  padding: 15px; /* Add more padding for better readability */
+  background-color: #e8f0fe; /* Slightly lighter background for better contrast */
+  border: 1px solid #64b5f6; /* Use a more noticeable border color */
+  border-radius: 8px; /* Slightly rounder corners */
 }
 
 .activity-card .participants h5 {
-  margin-bottom: 10px;
-  color: #0d47a1;
+  margin-bottom: 12px; /* Increase spacing below the heading */
+  font-size: 1.1em; /* Slightly larger font size for emphasis */
+  color: #0d47a1; /* Keep the strong blue color */
 }
 
 .activity-card .participants ul {
   list-style-type: disc;
-  padding-left: 20px;
+  padding-left: 25px; /* Increase indentation for better alignment */
 }
 
 .activity-card .participants li {
-  margin-bottom: 5px;
-  color: #1a237e;
+  margin-bottom: 8px; /* Add more spacing between list items */
+  font-size: 0.95em; /* Slightly smaller font size for balance */
+  color: #1a237e; /* Keep the consistent blue color */
 }
 
 .form-group {

@@ -40,13 +40,28 @@
                 <p><strong>Max Participants:</strong> ${activity.max_participants}</p>
                 <div class="participants">
                   <h5>Participants:</h5>
-                  <ul>
-                    ${activity.participants.map(participant => `<li>${participant}</li>`).join('')}
+                  <ul id="participants-${activityName.replace(/\s+/g, '-')}">
+                    <li>Loading participants...</li>
                   </ul>
                 </div>
               `;
 
               activitiesList.appendChild(card);
+
+              // Fetch participants for the activity
+              fetch(`/activities/${activityName}/participants`)
+                .then(response => response.json())
+                .then(participantsData => {
+                  const participantsList = document.getElementById(`participants-${activityName.replace(/\s+/g, '-')}`);
+                  participantsList.innerHTML = participantsData.participants.length
+                    ? participantsData.participants.map(participant => `<li>${participant}</li>`).join('')
+                    : '<li>No participants yet.</li>';
+                })
+                .catch(error => {
+                  console.error(`Error fetching participants for ${activityName}:`, error);
+                  const participantsList = document.getElementById(`participants-${activityName.replace(/\s+/g, '-')}`);
+                  participantsList.innerHTML = '<li>Error loading participants.</li>';
+                });
             });
           })
           .catch(error => {
