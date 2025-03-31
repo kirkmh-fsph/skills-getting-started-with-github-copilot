@@ -20,6 +20,39 @@
           <p>Loading activities...</p>
         </div>
       </section>
+      <script>
+        // Fetch activities and populate the activity cards
+        fetch('/activities')
+          .then(response => response.json())
+          .then(data => {
+            const activitiesList = document.getElementById('activities-list');
+            activitiesList.innerHTML = ''; // Clear loading message
+
+            Object.keys(data).forEach(activityName => {
+              const activity = data[activityName];
+              const card = document.createElement('div');
+              card.className = 'activity-card';
+
+              card.innerHTML = `
+                <h4>${activityName}</h4>
+                <p>${activity.description}</p>
+                <p><strong>Schedule:</strong> ${activity.schedule}</p>
+                <p><strong>Max Participants:</strong> ${activity.max_participants}</p>
+                <div class="participants">
+                  <h5>Participants:</h5>
+                  <ul>
+                    ${activity.participants.map(participant => `<li>${participant}</li>`).join('')}
+                  </ul>
+                </div>
+              `;
+
+              activitiesList.appendChild(card);
+            });
+          })
+          .catch(error => {
+            console.error('Error fetching activities:', error);
+          });
+      </script>
 
       <section id="signup-container">
         <h3>Sign Up for an Activity</h3>
